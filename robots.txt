@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tunahanhaksever.github.io/bitigey-matematik/sitemap.xml

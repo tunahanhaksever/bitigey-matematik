@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Bitigey Matematik & Geometri Zeka Stüdyosu — Tunahan Haksever</title>
+  <meta name="description" content="Tunahan Haksever tarafından geliştirilen; 4 işlem zihinden hesaplama, adım adım denklem çözücü, KPSS/TYT/ÖSYM problem atölyesi ve interaktif geometri laboratuvarı içeren yeni nesil matematik ekosistemi.">
+  <meta name="keywords" content="Tunahan Haksever, tunahanhaksever, bitigey, bitigey matematik, zihinden hesaplama, denklem çözücü, adım adım cebir, kpss matematik, tyt matematik, geometri çözücü, ösym problem çözme, pisagor, analitik geometri">
+  <meta name="author" content="Tunahan Haksever">
+  <meta name="publisher" content="Tunahan Haksever">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tunahanhaksever.github.io/bitigey-matematik/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tunahanhaksever.github.io/bitigey-matematik/">
+  <meta property="og:title" content="Bitigey Matematik & Geometri Zeka Stüdyosu — Tunahan Haksever">
+  <meta property="og:description" content="4 İşlem antrenörü, adım adım denklem çözücü, KPSS/TYT problem atölyesi ve interaktif geometri laboratuvarı.">
+  <meta property="og:site_name" content="Bitigey Matematik">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://github.com/tunahanhaksever#person",
+        "name": "Tunahan Haksever",
+        "jobTitle": "Yazılımcı, Yazar & Sistem Mimarı",
+        "url": "https://github.com/tunahanhaksever",
+        "sameAs": [
+          "https://github.com/tunahanhaksever",
+          "https://bitigey.com"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Bitigey Matematik & Geometri Zeka Stüdyosu",
+        "operatingSystem": "Web, iOS, Android, Windows, macOS",
+        "applicationCategory": "EducationalApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@id": "https://github.com/tunahanhaksever#person"
+        },
+        "creator": {
+          "@id": "https://github.com/tunahanhaksever#person"
+        },
+        "description": "Zihinden 4 işlem, adım adım denklem çözümü, KPSS/TYT problem taktikleri ve canlı HTML5 canvas geometri laboratuvarı."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Google Fonts: Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for pristine LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Light Orbs -->
+  <div class="bg-aurora">
+    <div class="aurora-orb aurora-1"></div>
+    <div class="aurora-orb aurora-2"></div>
+    <div class="aurora-orb aurora-3"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand-box">
+        <div class="brand-icon">∑</div>
+        <div class="brand-text">
+          <h1>BİTİGEY MATEMATİK</h1>
+          <p>Zeka, Denklem & Geometri Stüdyosu</p>
+        </div>
+      </div>
+      <a href="https://github.com/tunahanhaksever" target="_blank" class="author-pill">
+        <span>👨‍💻 Tunahan Haksever</span>
+      </a>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs-wrapper">
+      <nav class="nav-tabs">
+        <button class="nav-tab-btn active" data-tab="arithmetic">
+          <span class="tab-icon">⚡</span>
+          <span>4 İşlem & Hız</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="algebra">
+          <span class="tab-icon">🧮</span>
+          <span>Denklem & Cebir</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="problems">
+          <span class="tab-icon">💡</span>
+          <span>Problem Atölyesi</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="geometry">
+          <span class="tab-icon">📐</span>
+          <span>Canlı Geometri</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="puzzles">
+          <span class="tab-icon">🧠</span>
+          <span>Zeka Oyunları</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="formulas">
+          <span class="tab-icon">📚</span>
+          <span>Formül Arşivi</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- =========================================================
+         TAB 1: 4 İŞLEM & ZİHİNDEN HESAPLAMA (ARITHMETIC)
+         ========================================================= -->
+    <main id="tab-arithmetic" class="tab-view active">
+      <div class="glass-card">
+        <div class="glass-card-header">
+          <div class="card-title-group">
+            <h2>⚡ Zihinden Hızlı 4 İşlem Antrenörü</h2>
+            <p>Zihinsel hesaplama reflekslerinizi geliştirin, süreye karşı yarışın ve streak rekorları kırın.</p>
+          </div>
+          <span class="badge badge-primary" id="trainer-mode-badge">Karışık 4 İşlem</span>
+        </div>
+
+        <!-- Mode & Difficulty Selectors -->
+        <div class="input-row" style="margin-bottom: 20px;">
+          <div class="field-box">
+            <label>İşlem Türü</label>
+            <select id="arithmetic-op-select" class="trainer-input" style="font-size: 0.95rem; padding: 10px; height: auto;">
+              <option value="all">🎲 Karışık (Tüm İşlemler)</option>
+              <option value="+">➕ Toplama</option>
+              <option value="-">➖ Çıkarma</option>
+              <option value="*">✖️ Çarpma</option>
+              <option value="/">➗ Bölme</option>
+              <option value="priority">🎯 İşlem Önceliği Modu</option>
+            </select>
+          </div>
+
+          <div class="field-box">
+            <label>Zorluk Seviyesi</label>
+            <select id="arithmetic-diff-select" class="trainer-input" style="font-size: 0.95rem; padding: 10px; height: auto;">
+              <option value="easy">🟢 Kolay (Temel Sayılar)</option>
+              <option value="medium" selected>🟡 Orta (Pratik Hız)</option>
+              <option value="hard">🔴 Zor (Çift Basamaklar)</option>
+              <option value="genius">🔥 Deha (Yüksek Tempolu)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Stats Dashboard -->
+        <div class="trainer-dashboard">
+          <div class="stat-box">
+            <div class="stat-label">Doğru</div>
+            <div class="stat-val" style="color: var(--accent-emerald);" id="stat-correct">0</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Seri (Streak)</div>
+            <div class="stat-val" style="color: var(--accent-gold);" id="stat-streak">🔥 0</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">En Yüksek Skor</div>
+            <div class="stat-val" style="color: var(--primary);" id="stat-best">0</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Kalan Süre</div>
+            <div class="stat-val" style="color: var(--accent-rose);" id="stat-timer">15s</div>
+          </div>
+        </div>
+
+        <!-- Math Arena -->
+        <div class="math-arena-box">
+          <div class="math-timer-bar" id="math-timer-bar"></div>
+          <div class="question-expression" id="math-question">12 + 15 = ?</div>
+
+          <div class="trainer-input-wrapper">
+            <input type="number" id="trainer-user-input" class="trainer-input" placeholder="Cevap..." autofocus autocomplete="off">
+            <button id="btn-submit-answer" class="btn-solve">Kontrol</button>
+          </div>
+
+          <!-- Virtual Keypad (Phone Friendly) -->
+          <div class="virtual-keypad">
+            <button class="key-btn" data-key="1">1</button>
+            <button class="key-btn" data-key="2">2</button>
+            <button class="key-btn" data-key="3">3</button>
+            <button class="key-btn" data-key="4">4</button>
+            <button class="key-btn" data-key="5">5</button>
+            <button class="key-btn" data-key="6">6</button>
+            <button class="key-btn" data-key="7">7</button>
+            <button class="key-btn" data-key="8">8</button>
+            <button class="key-btn" data-key="9">9</button>
+            <button class="key-btn action" id="key-clear">C</button>
+            <button class="key-btn" data-key="0">0</button>
+            <button class="key-btn action" id="key-enter">↵</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================
+         TAB 2: ADIM ADIM DENKLEM & CEBİR ÇÖZÜCÜ
+         ========================================================= -->
+    <main id="tab-algebra" class="tab-view">
+      <div class="glass-card">
+        <div class="glass-card-header">
+          <div class="card-title-group">
+            <h2>🧮 Adım Adım Denklem & Cebir Çözücü</h2>
+            <p>Denklemin katsayılarını girin; motor hangi kuralın nasıl uygulandığını adım adım açıklasın.</p>
+          </div>
+        </div>
+
+        <!-- Equation Selector Pills -->
+        <div class="equation-types-pills">
+          <button class="eq-pill active" data-eq="linear">1. Derece Denklem (ax + b = c)</button>
+          <button class="eq-pill" data-eq="quadratic">2. Derece Denklem (ax² + bx + c = 0)</button>
+          <button class="eq-pill" data-eq="system">2 Bilinmeyenli Sistem (ax + by = c)</button>
+          <button class="eq-pill" data-eq="abs">Mutlak Değer (|ax + b| = c)</button>
+          <button class="eq-pill" data-eq="inequality">Eşitsizlik (ax + b ≤ c)</button>
+          <button class="eq-pill" data-eq="factoring">Çarpanlara Ayırma (x² - y²)</button>
+        </div>
+
+        <!-- Dynamic Form Container -->
+        <div id="algebra-form-container" style="margin-top: 16px;">
+          <!-- Will be injected by app.js -->
+        </div>
+
+        <!-- Action Button -->
+        <button id="btn-solve-algebra" class="btn-solve" style="margin-top: 14px;">
+          <span>⚡ Adım Adım Çöz</span>
+        </button>
+
+        <!-- Solution Breakdown Output -->
+        <div id="algebra-solution-output" class="solution-container">
+          <!-- Step cards will appear here -->
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================
+         TAB 3: PROBLEM ÇÖZME & MUHAKEME ATÖLYESİ
+         ========================================================= -->
+    <main id="tab-problems" class="tab-view">
+      <div class="glass-card">
+        <div class="glass-card-header">
+          <div class="card-title-group">
+            <h2>💡 ÖSYM / KPSS / TYT Problem Çözme Atölyesi</h2>
+            <p>Sayı, yaş, hız, yüzde, karışım ve işçi problemlerini taktik ve formülleriyle çözün.</p>
+          </div>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="equation-types-pills" id="problem-category-filters">
+          <button class="eq-pill active" data-cat="all">Tüm Problemler</button>
+          <button class="eq-pill" data-cat="sayi">Sayı & Kesir</button>
+          <button class="eq-pill" data-cat="yas">Yaş Problemleri</button>
+          <button class="eq-pill" data-cat="hiz">Hız & Hareket</button>
+          <button class="eq-pill" data-cat="yuzde">Yüzde & Kâr-Zarar</button>
+          <button class="eq-pill" data-cat="karisim">Karışım</button>
+          <button class="eq-pill" data-cat="isci">İşçi & Havuz</button>
+        </div>
+
+        <!-- Problem Active Container -->
+        <div id="problem-active-box" style="margin-top: 20px;">
+          <!-- Injected by app.js -->
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================
+         TAB 4: CANLI GEOMETRİ LABORATUVARI (CANVAS)
+         ========================================================= -->
+    <main id="tab-geometry" class="tab-view">
+      <div class="glass-card">
+        <div class="glass-card-header">
+          <div class="card-title-group">
+            <h2>📐 İnteraktif Canlı Geometri Laboratuvarı</h2>
+            <p>Kenar ve açıları değiştirin; şekli canlı Canvas üzerinde görün, alan ve çevre hesaplayın.</p>
+          </div>
+        </div>
+
+        <!-- Shape Selector Pills -->
+        <div class="equation-types-pills">
+          <button class="eq-pill active" data-geo="triangle">Üçgen (Pisagor & Alan)</button>
+          <button class="eq-pill" data-geo="special-triangle">Özel Üçgenler (30-60-90, 45-45-90)</button>
+          <button class="eq-pill" data-geo="circle">Çember & Daire Dilimi</button>
+          <button class="eq-pill" data-geo="quad">Dörtgenler & Yamuk</button>
+          <button class="eq-pill" data-geo="analytic">Analitik Geometri (Nokta & Eğim)</button>
+        </div>
+
+        <div class="geometry-layout" style="margin-top: 20px;">
+          <!-- Canvas Visualizer -->
+          <div class="canvas-container">
+            <canvas id="geoCanvas" width="540" height="380"></canvas>
+            <div id="geo-live-summary" style="margin-top: 12px; font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; text-align: center;"></div>
+          </div>
+
+          <!-- Controls & Inputs Panel -->
+          <div class="geo-controls-panel glass-card" style="padding: 18px;">
+            <div id="geo-inputs-container">
+              <!-- Injected by app.js -->
+            </div>
+
+            <div id="geo-results-box" class="solution-container" style="margin-top: 12px;">
+              <!-- Formula and calculation steps -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================
+         TAB 5: MATEMATİKSEL ZEKA OYUNLARI
+         ========================================================= -->
+    <main id="tab-puzzles" class="tab-view">
+      <div class="glass-card">
+        <div class="glass-card-header">
+          <div class="card-title-group">
+            <h2>🧠 Matematiksel Zeka & Akıl Oyunları</h2>
+            <p>Sayı dizilerinin gizli kurallarını keşfedin, mantık yürütün ve IQ puanınızı artırın.</p>
+          </div>
+        </div>
+
+        <div id="puzzle-active-container">
+          <!-- Injected by app.js -->
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================
+         TAB 6: FORMÜL KÜTÜPHANESİ
+         ========================================================= -->
+    <main id="tab-formulas" class="tab-view">
+      <div class="glass-card">
+        <div class="glass-card-header">
+          <div class="card-title-group">
+            <h2>📚 KPSS / TYT Matematik & Geometri Formül Kütüphanesi</h2>
+            <p>Sınavlarda en çok çıkan temel formüller, kestirme kurallar ve pratik çözüm yolları.</p>
+          </div>
+        </div>
+
+        <div class="input-row" style="margin-bottom: 20px;">
+          <input type="text" id="formula-search-input" class="trainer-input" style="font-size: 0.95rem; text-align: left; padding: 12px 18px;" placeholder="🔍 Formül veya konu ara (Örn: Pisagor, Delta, Karışım, Alan)...">
+        </div>
+
+        <div class="grid-3" id="formulas-grid-container">
+          <!-- Injected by app.js -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-links">
+        <a href="https://github.com/tunahanhaksever" target="_blank">Tunahan Haksever GitHub</a>
+        <span>•</span>
+        <a href="https://bitigey.com" target="_blank">Bitigey Ekosistemi</a>
+        <span>•</span>
+        <span>Açık Kaynak (MIT)</span>
+      </div>
+      <p>© 2026 Bitigey Matematik & Geometri Zeka Stüdyosu — Tunahan Haksever</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
