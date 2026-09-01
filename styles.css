@@ -1,696 +1,749 @@
-/* Bitigey Matematik & Geometri Zeka Stüdyosu - Master Design System */
+/* ==========================================================================
+   BITIGEY MATEMATİK & GEOMETRİ STÜDYOSU
+   Artisanal, Human-Crafted Design System (Inspired by Linear, Brilliant & Apple)
+   Crafted with precision by Tunahan Haksever
+   ========================================================================== */
+
 :root {
-  --bg-main: #07090e;
-  --bg-card: #0d121f;
-  --bg-card-hover: #131b2e;
-  --bg-surface: #101626;
-  --bg-input: #0a0d16;
+  /* Ultra-Refined Obsidian & Graphite Dark Palette */
+  --bg-deep: #090a0f;
+  --bg-surface: #10121a;
+  --bg-card: #151824;
+  --bg-card-subtle: #1a1e2d;
+  --bg-input: #0c0e15;
+  --bg-active-pill: #22283a;
+
+  /* Sophisticated Accents */
+  --brand-blue: #3b82f6;
+  --brand-blue-hover: #2563eb;
+  --brand-blue-subtle: rgba(59, 130, 246, 0.12);
   
-  --primary: #38bdf8;
-  --primary-hover: #0ea5e9;
-  --primary-glow: rgba(56, 189, 248, 0.25);
-  
-  --accent-gold: #f59e0b;
-  --accent-gold-glow: rgba(245, 158, 11, 0.25);
+  --accent-gold: #eab308;
+  --accent-gold-subtle: rgba(234, 179, 8, 0.12);
   
   --accent-emerald: #10b981;
-  --accent-emerald-glow: rgba(16, 185, 129, 0.25);
-  
-  --accent-purple: #a855f7;
+  --accent-emerald-subtle: rgba(16, 185, 129, 0.12);
+
   --accent-rose: #f43f5e;
+  --accent-purple: #8b5cf6;
+
+  /* High-legibility Typography Palette */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+
+  /* Human-engineered Micro Borders */
+  --border-hairline: rgba(255, 255, 255, 0.07);
+  --border-card: rgba(255, 255, 255, 0.1);
+  --border-focus: rgba(59, 130, 246, 0.5);
   
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
-  
-  --border-light: rgba(255, 255, 255, 0.08);
-  --border-active: rgba(56, 189, 248, 0.4);
-  --border-gold: rgba(245, 158, 11, 0.4);
-  
-  --radius-sm: 8px;
+  --radius-xs: 6px;
+  --radius-sm: 10px;
   --radius-md: 14px;
   --radius-lg: 20px;
-  --radius-xl: 28px;
-  
-  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-  --font-math: 'KaTeX_Math', 'Playfair Display', serif;
+  --radius-pill: 9999px;
+
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 12px 36px -8px rgba(0, 0, 0, 0.5);
+
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-serif-math: 'KaTeX_Math', 'Georgia', serif;
 }
 
-* {
+/* Base Reset */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  font-family: var(--font-main);
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
   line-height: 1.5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  background-image: 
+    radial-gradient(ellipse at 50% -20%, rgba(59, 130, 246, 0.08), transparent 70%),
+    radial-gradient(ellipse at 80% 80%, rgba(234, 179, 8, 0.04), transparent 60%);
 }
 
-/* Background Aurora Ambient Lights */
-.bg-aurora {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-.aurora-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
-}
-.aurora-1 { width: 500px; height: 500px; background: var(--primary); top: -100px; right: -100px; }
-.aurora-2 { width: 450px; height: 450px; background: var(--accent-gold); bottom: 10%; left: -100px; }
-.aurora-3 { width: 400px; height: 400px; background: var(--accent-purple); top: 40%; right: 20%; }
-
-/* Layout Shell */
+/* Container Structure */
 .app-container {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
+  max-width: 1140px;
   width: 100%;
   margin: 0 auto;
-  padding: 16px;
+  padding: 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   flex: 1;
 }
 
-/* Top App Header */
+/* Clean, Human App Header */
 .app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px;
-  background: rgba(13, 18, 31, 0.7);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  padding: 12px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
 }
+
 .brand-box {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 .brand-icon {
-  width: 42px;
-  height: 42px;
-  background: linear-gradient(135deg, var(--primary), var(--accent-purple));
-  border-radius: var(--radius-md);
+  width: 38px;
+  height: 38px;
+  background: #1e2433;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  color: #fff;
-  box-shadow: 0 4px 15px var(--primary-glow);
-}
-.brand-text h1 {
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  background: linear-gradient(90deg, #fff 40%, var(--primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.brand-text p {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-.author-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid var(--border-gold);
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--accent-gold);
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.author-pill:hover {
-  background: rgba(245, 158, 11, 0.22);
-  transform: translateY(-1px);
+  color: var(--brand-blue);
 }
 
-/* Nav Bar (Tabs) - Mobile Scrollable */
+.brand-text h1 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.brand-text p {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.author-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.author-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Segmented Tabs Control (Linear/Apple feel) */
 .nav-tabs-wrapper {
   overflow-x: auto;
   scrollbar-width: none;
-  -ms-overflow-style: none;
-  margin: 0 -4px;
-  padding: 4px;
+  -webkit-overflow-scrolling: touch;
 }
 .nav-tabs-wrapper::-webkit-scrollbar { display: none; }
 
 .nav-tabs {
-  display: flex;
-  gap: 8px;
-  min-width: max-content;
-  background: rgba(13, 18, 31, 0.5);
-  backdrop-filter: blur(12px);
-  padding: 6px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-light);
+  display: inline-flex;
+  gap: 4px;
+  background: var(--bg-surface);
+  padding: 4px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-hairline);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
 }
+
 .nav-tab-btn {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
-  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
   background: transparent;
   border: none;
-  color: var(--text-muted);
-  font-family: var(--font-main);
-  font-size: 0.85rem;
-  font-weight: 700;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   white-space: nowrap;
 }
+
 .nav-tab-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.05);
-}
-.nav-tab-btn.active {
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(168, 85, 247, 0.18));
-  color: #fff;
-  border: 1px solid var(--border-active);
-  box-shadow: 0 4px 15px var(--primary-glow);
-}
-.tab-icon {
-  font-size: 1.1rem;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
 }
 
-/* Main Content Views */
+.nav-tab-btn.active {
+  background: var(--bg-active-pill);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tab-icon {
+  font-size: 1rem;
+}
+
+/* Views Container */
 .tab-view {
   display: none;
   flex-direction: column;
-  gap: 20px;
-  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 18px;
+  animation: viewAppear 0.2s ease;
 }
+
 .tab-view.active {
   display: flex;
 }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+
+@keyframes viewAppear {
+  from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Glass Cards */
+/* Crafted Cards */
 .glass-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
   padding: 24px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  position: relative;
-  overflow: hidden;
+  box-shadow: var(--shadow-card);
 }
+
 .glass-card-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 20px;
+  gap: 16px;
   flex-wrap: wrap;
-  gap: 12px;
 }
+
 .card-title-group h2 {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  letter-spacing: -0.01em;
+  color: #fff;
 }
+
 .card-title-group p {
   font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-top: 2px;
+  color: var(--text-secondary);
+  margin-top: 4px;
 }
 
 /* Badges */
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 0.75rem;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.badge-primary { background: var(--primary-glow); color: var(--primary); border: 1px solid var(--border-active); }
-.badge-gold { background: var(--accent-gold-glow); color: var(--accent-gold); border: 1px solid var(--border-gold); }
-.badge-emerald { background: var(--accent-emerald-glow); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.4); }
 
-/* Grid Utilities */
-.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.badge-primary { background: var(--brand-blue-subtle); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); }
+.badge-gold { background: var(--accent-gold-subtle); color: #facc15; border: 1px solid rgba(250, 204, 21, 0.3); }
 
-/* -------------------------------------------------------------
-   MODULE 1: 4 İŞLEM & HIZLI HESAPLAMA (ARITHMETIC TRAINER)
-   ------------------------------------------------------------- */
-.trainer-dashboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
-  margin-bottom: 20px;
-}
-.stat-box {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
-  text-align: center;
-}
-.stat-box .stat-label {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.stat-box .stat-val {
-  font-size: 1.6rem;
-  font-weight: 800;
-  font-family: var(--font-mono);
-  margin-top: 4px;
-}
-
-.math-arena-box {
-  background: linear-gradient(180deg, #0f1626, #090d17);
-  border: 2px solid var(--border-active);
-  border-radius: var(--radius-xl);
-  padding: 36px 20px;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-}
-.math-timer-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 5px;
-  background: linear-gradient(90deg, var(--accent-emerald), var(--accent-gold), var(--accent-rose));
-  width: 100%;
-  border-radius: 9999px 9999px 0 0;
-  transition: width 0.1s linear;
-}
-.question-expression {
-  font-size: clamp(2.2rem, 6vw, 3.6rem);
-  font-weight: 900;
-  font-family: var(--font-mono);
-  letter-spacing: 0.05em;
-  margin-bottom: 24px;
-  color: #fff;
-  text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
-}
-.trainer-input-wrapper {
-  max-width: 380px;
-  margin: 0 auto;
-  display: flex;
-  gap: 10px;
-}
-.trainer-input {
-  flex: 1;
-  background: var(--bg-input);
-  border: 2px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 14px 20px;
-  font-size: 1.6rem;
-  font-weight: 800;
-  font-family: var(--font-mono);
-  text-align: center;
-  color: #fff;
-  outline: none;
-  transition: all 0.2s;
-}
-.trainer-input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 20px var(--primary-glow);
-}
-
-/* Virtual Number Keypad for Phones */
-.virtual-keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  max-width: 320px;
-  margin: 20px auto 0;
-}
-.key-btn {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 14px 0;
-  font-size: 1.3rem;
-  font-weight: 800;
-  font-family: var(--font-mono);
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.1s;
-}
-.key-btn:active {
-  transform: scale(0.94);
-  background: var(--primary);
-  color: #000;
-}
-.key-btn.action {
-  background: rgba(245, 158, 11, 0.15);
-  color: var(--accent-gold);
-  border-color: var(--border-gold);
-}
-
-/* -------------------------------------------------------------
-   MODULE 2: ADIM ADIM DENKLEM & CEBİR ÇÖZÜCÜ
-   ------------------------------------------------------------- */
-.equation-types-pills {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  scrollbar-width: none;
-}
-.eq-pill {
-  padding: 8px 16px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s;
-}
-.eq-pill.active {
-  background: var(--primary-glow);
-  color: var(--primary);
-  border-color: var(--border-active);
-}
-
+/* Form Elements & Inputs */
 .input-row {
   display: flex;
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
-  margin: 16px 0;
 }
+
 .field-box {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   flex: 1;
-  min-width: 90px;
+  min-width: 100px;
 }
+
 .field-box label {
   font-size: 0.72rem;
-  color: var(--text-muted);
-  font-weight: 700;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
-.field-box input {
+
+.field-box input, select.trainer-input {
   background: var(--bg-input);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-sm);
   padding: 10px 14px;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 600;
   font-family: var(--font-mono);
   color: #fff;
   outline: none;
-}
-.field-box input:focus {
-  border-color: var(--primary);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+.field-box input:focus, select.trainer-input:focus {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Standard Button */
 .btn-solve {
-  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-  color: #000;
-  font-weight: 800;
-  font-size: 0.95rem;
-  padding: 12px 28px;
-  border-radius: var(--radius-md);
-  border: none;
+  background: var(--brand-blue);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 11px 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  box-shadow: 0 8px 25px var(--primary-glow);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.btn-solve:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px var(--primary-glow);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  transition: all 0.15s ease;
 }
 
-/* Step-by-Step Solution Breakdown Cards */
+.btn-solve:hover {
+  background: var(--brand-blue-hover);
+  transform: translateY(-1px);
+}
+
+.btn-solve:active {
+  transform: translateY(0);
+}
+
+/* -------------------------------------------------------------
+   MODULE 1: 4 İŞLEM & HIZLI HESAPLAMA (TACTILE ARENA)
+   ------------------------------------------------------------- */
+.trainer-dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 600px) {
+  .trainer-dashboard { grid-template-columns: repeat(2, 1fr); }
+}
+
+.stat-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.stat-box .stat-label {
+  font-size: 0.68rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.stat-box .stat-val {
+  font-size: 1.45rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+
+.math-arena-box {
+  background: #0d101a;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 32px 18px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.math-timer-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: var(--brand-blue);
+  width: 100%;
+  transition: width 0.1s linear;
+}
+
+.question-expression {
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  font-weight: 800;
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+  color: #fff;
+}
+
+.trainer-input-wrapper {
+  max-width: 320px;
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.trainer-input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  text-align: center;
+  color: #fff;
+  outline: none;
+}
+
+.trainer-input:focus {
+  border-color: var(--brand-blue);
+}
+
+/* Tactile 3D-Pressed Virtual Keypad */
+.virtual-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 290px;
+  margin: 20px auto 0;
+}
+
+.key-btn {
+  background: #1b2030;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: var(--radius-sm);
+  padding: 12px 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.08s ease;
+  user-select: none;
+}
+
+.key-btn:hover {
+  background: #232a3d;
+}
+
+.key-btn:active {
+  transform: translateY(2px);
+  border-bottom-width: 0;
+}
+
+.key-btn.action {
+  background: #242c40;
+  color: #60a5fa;
+}
+
+/* -------------------------------------------------------------
+   MODULE 2: ADIM ADIM DENKLEM & CEBİR (ACCORDION & CARDS)
+   ------------------------------------------------------------- */
+.equation-types-pills {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+.equation-types-pills::-webkit-scrollbar { display: none; }
+
+.eq-pill {
+  padding: 7px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.eq-pill:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.eq-pill.active {
+  background: var(--bg-active-pill);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
 .solution-container {
-  margin-top: 24px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
+
 .step-card {
   background: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-left: 4px solid var(--primary);
+  border: 1px solid var(--border-hairline);
   border-radius: var(--radius-md);
-  padding: 16px 20px;
-  position: relative;
-  transition: all 0.2s;
+  padding: 16px 18px;
 }
-.step-card:hover {
-  border-color: var(--primary);
-  transform: translateX(4px);
-}
+
 .step-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
+
 .step-num {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.step-rule {
   font-size: 0.72rem;
-  color: var(--accent-gold);
-  background: rgba(245, 158, 11, 0.1);
+  font-weight: 700;
+  color: var(--brand-blue);
+  text-transform: uppercase;
+}
+
+.step-rule {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.04);
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
   font-weight: 600;
 }
+
 .step-math {
-  font-size: 1.15rem;
-  font-family: var(--font-math);
+  font-size: 1.1rem;
   color: #fff;
+  font-family: var(--font-serif-math);
   margin: 6px 0;
 }
+
 .step-explanation {
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
-/* Final Result Banner */
 .result-box-highlight {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(56, 189, 248, 0.15));
-  border: 1px solid var(--accent-emerald);
+  background: #0f211c;
+  border: 1px solid rgba(16, 185, 129, 0.3);
   border-radius: var(--radius-md);
-  padding: 18px 24px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 6px;
 }
+
 .result-box-highlight .res-title {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--accent-emerald);
 }
+
 .result-box-highlight .res-val {
-  font-size: 1.5rem;
-  font-weight: 900;
+  font-size: 1.35rem;
+  font-weight: 800;
   font-family: var(--font-mono);
   color: #fff;
 }
 
 /* -------------------------------------------------------------
-   MODULE 3: GEOMETRİ LABORATUVARI (CANVAS ENGINE)
+   MODULE 3: GEOMETRİ LABORATUVARI (CANVAS)
    ------------------------------------------------------------- */
 .geometry-layout {
   display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 20px;
+  grid-template-columns: 1fr 320px;
+  gap: 18px;
 }
-@media (max-width: 900px) {
+
+@media (max-width: 860px) {
   .geometry-layout { grid-template-columns: 1fr; }
 }
 
 .canvas-container {
-  background: #090c14;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 16px;
-  position: relative;
+  background: #0b0e17;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 380px;
 }
+
 #geoCanvas {
   max-width: 100%;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xs);
 }
 
 .geo-controls-panel {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 /* -------------------------------------------------------------
-   MODULE 4: PROBLEM ÇÖZME & MUHAKEME ATÖLYESİ
+   MODULE 4: PROBLEM ATÖLYESİ
    ------------------------------------------------------------- */
 .problem-card {
   background: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 24px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.problem-category-badge {
-  align-self: flex-start;
-}
+
 .problem-statement {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: #f1f5f9;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #fff;
 }
+
 .problem-options-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
+
 @media (max-width: 600px) {
   .problem-options-grid { grid-template-columns: 1fr; }
 }
+
 .option-btn {
   background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 12px 16px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
   text-align: left;
-  font-family: var(--font-main);
-  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--text-primary);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s ease;
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 .option-btn:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.2);
 }
+
 .option-btn.correct {
-  background: rgba(16, 185, 129, 0.2);
+  background: rgba(16, 185, 129, 0.15);
   border-color: var(--accent-emerald);
   color: #fff;
 }
+
 .option-btn.wrong {
-  background: rgba(244, 63, 94, 0.2);
+  background: rgba(244, 63, 94, 0.15);
   border-color: var(--accent-rose);
   color: #fff;
 }
+
 .opt-letter {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 800;
 }
 
 .problem-solution-box {
-  background: #090e1a;
-  border: 1px solid var(--border-active);
+  background: #0b0e17;
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
-  padding: 20px;
-  margin-top: 12px;
+  padding: 18px;
   display: none;
-  animation: fadeIn 0.3s ease;
+  animation: viewAppear 0.2s ease;
 }
+
 .problem-solution-box.visible {
   display: block;
 }
 
 /* -------------------------------------------------------------
-   FORMULA LIBRARY CARDS
+   FORMULAS GRID
    ------------------------------------------------------------- */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
 .formula-card {
   background: var(--bg-surface);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-hairline);
   border-radius: var(--radius-md);
-  padding: 18px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition: transform 0.2s, border-color 0.2s;
+  transition: border-color 0.15s ease;
 }
+
 .formula-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--border-gold);
+  border-color: rgba(255, 255, 255, 0.2);
 }
+
 .formula-name {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--accent-gold);
-}
-.formula-math {
-  font-size: 1.1rem;
-  font-family: var(--font-math);
+  font-size: 0.82rem;
+  font-weight: 700;
   color: #fff;
-  background: rgba(0,0,0,0.3);
+}
+
+.formula-math {
+  font-size: 1rem;
+  font-family: var(--font-serif-math);
+  color: #93c5fd;
+  background: #0b0e17;
   padding: 10px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
   text-align: center;
 }
+
 .formula-desc {
-  font-size: 0.78rem;
-  color: var(--text-muted);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  line-height: 1.45;
 }
 
 /* Footer */
@@ -698,21 +751,24 @@ body {
   margin-top: auto;
   padding: 24px 0 12px;
   text-align: center;
-  border-top: 1px solid var(--border-light);
-  color: var(--text-dim);
-  font-size: 0.8rem;
+  border-top: 1px solid var(--border-hairline);
+  color: var(--text-tertiary);
+  font-size: 0.78rem;
 }
+
 .footer-links {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
+
 .footer-links a {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.15s ease;
 }
+
 .footer-links a:hover {
-  color: var(--primary);
+  color: #fff;
 }

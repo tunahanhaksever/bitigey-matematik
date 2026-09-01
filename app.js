@@ -856,6 +856,173 @@ function drawGeometryCanvas() {
         <div class="step-math">A_{dilim} = \\frac{${alpha}}{360} · \\pi · ${r}² = ${sectorArea.toFixed(2)} \\text{ cm}²</div>
       </div>
     `;
+  } else if (activeGeoType === 'special-triangle') {
+    const type = document.getElementById('geo-special-type')?.value || '30-60-90';
+    const k = parseFloat(document.getElementById('geo-k')?.value || '5');
+
+    ctx.fillStyle = 'rgba(56, 189, 248, 0.15)';
+    ctx.strokeStyle = '#38bdf8';
+    ctx.lineWidth = 3;
+
+    if (type === '30-60-90') {
+      const side30 = k;
+      const side60 = k * Math.sqrt(3);
+      const hyp = 2 * k;
+      const area = (side30 * side60) / 2;
+
+      const ox = 100, oy = 280;
+      const ax = ox, ay = oy - (side60 * 16);
+      const bx = ox + (side30 * 16), by = oy;
+
+      ctx.beginPath();
+      ctx.moveTo(ox, oy); ctx.lineTo(ax, ay); ctx.lineTo(bx, by); ctx.closePath();
+      ctx.fill(); ctx.stroke();
+
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 13px Outfit';
+      ctx.fillText(`30° karşısı: ${k} cm (k)`, (ox + bx) / 2 - 20, oy + 25);
+      ctx.fillText(`60° karşısı: ${(side60).toFixed(2)} cm (k√3)`, ox - 85, (oy + ay) / 2);
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillText(`90° karşısı (Hipotenüs): ${hyp} cm (2k)`, (ax + bx) / 2 + 10, (ay + by) / 2 - 10);
+
+      summaryBox.innerHTML = `📐 30°-60°-90°: 30° karşısı <strong>${k} cm</strong> | 60° karşısı <strong>${(side60).toFixed(2)} cm</strong> | 90° karşısı <strong>${hyp} cm</strong>`;
+      resultsBox.innerHTML = `
+        <div class="step-card">
+          <div class="step-header"><span class="step-num">30°-60°-90° Kuralı</span><span class="step-rule">k, k√3, 2k</span></div>
+          <div class="step-math">30^\\circ \\rightarrow k = ${k}, \\quad 60^\\circ \\rightarrow k\\sqrt{3} = ${(side60).toFixed(2)}, \\quad 90^\\circ \\rightarrow 2k = ${hyp}</div>
+          <div class="step-explanation">Alan = (k · k√3) / 2 = <strong>${area.toFixed(2)} cm²</strong></div>
+        </div>
+      `;
+    } else {
+      const side = k;
+      const hyp = k * Math.sqrt(2);
+      const area = (k * k) / 2;
+
+      const ox = 120, oy = 280;
+      const ax = ox, ay = oy - (k * 18);
+      const bx = ox + (k * 18), by = oy;
+
+      ctx.beginPath();
+      ctx.moveTo(ox, oy); ctx.lineTo(ax, ay); ctx.lineTo(bx, by); ctx.closePath();
+      ctx.fill(); ctx.stroke();
+
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 13px Outfit';
+      ctx.fillText(`45° karşısı: ${k} cm (k)`, (ox + bx) / 2 - 20, oy + 25);
+      ctx.fillText(`45° karşısı: ${k} cm (k)`, ox - 75, (oy + ay) / 2);
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillText(`Hipotenüs: ${(hyp).toFixed(2)} cm (k√2)`, (ax + bx) / 2 + 10, (ay + by) / 2 - 10);
+
+      summaryBox.innerHTML = `📐 45°-45°-90° İkizkenar Dik Üçgen: Dik Kenarlar = <strong>${k} cm</strong> | Hipotenüs = <strong>${(hyp).toFixed(2)} cm</strong>`;
+      resultsBox.innerHTML = `
+        <div class="step-card">
+          <div class="step-header"><span class="step-num">45°-45°-90° Kuralı</span><span class="step-rule">k, k, k√2</span></div>
+          <div class="step-math">\\text{Hipotenüs} = k\\sqrt{2} = ${k} \\cdot \\sqrt{2} = ${(hyp).toFixed(2)} \\text{ cm}</div>
+          <div class="step-explanation">Alan = (k · k) / 2 = <strong>${area.toFixed(2)} cm²</strong></div>
+        </div>
+      `;
+    }
+  } else if (activeGeoType === 'quad') {
+    const a = parseFloat(document.getElementById('geo-qa')?.value || '12');
+    const c = parseFloat(document.getElementById('geo-qc')?.value || '6');
+    const h = parseFloat(document.getElementById('geo-qh')?.value || '5');
+    const area = ((a + c) / 2) * h;
+
+    const ox = 80, oy = 270;
+    const scale = 18;
+    const p1 = { x: ox, y: oy };
+    const p2 = { x: ox + a * scale, y: oy };
+    const p3 = { x: ox + ((a - c) / 2 + c) * scale, y: oy - h * scale };
+    const p4 = { x: ox + ((a - c) / 2) * scale, y: oy - h * scale };
+
+    ctx.fillStyle = 'rgba(168, 85, 247, 0.15)';
+    ctx.strokeStyle = '#a855f7';
+    ctx.lineWidth = 3;
+
+    ctx.beginPath();
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+    ctx.lineTo(p3.x, p3.y);
+    ctx.lineTo(p4.x, p4.y);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // Height dashed line
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = '#f59e0b';
+    ctx.beginPath();
+    ctx.moveTo(p4.x, p4.y);
+    ctx.lineTo(p4.x, oy);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 13px Outfit';
+    ctx.fillText(`Alt Taban a = ${a} cm`, (p1.x + p2.x) / 2 - 40, oy + 25);
+    ctx.fillText(`Üst Taban c = ${c} cm`, (p4.x + p3.x) / 2 - 40, p4.y - 12);
+    ctx.fillStyle = '#f59e0b';
+    ctx.fillText(`h = ${h} cm`, p4.x + 8, (oy + p4.y) / 2);
+
+    summaryBox.innerHTML = `🔷 Yamuk Alanı = ((Alt Taban + Üst Taban) / 2) · h = <strong>${area.toFixed(2)} cm²</strong>`;
+    resultsBox.innerHTML = `
+      <div class="step-card">
+        <div class="step-header"><span class="step-num">Yamuk Alan Formülü</span><span class="step-rule">A = ((a + c) / 2) · h</span></div>
+        <div class="step-math">A = \\frac{${a} + ${c}}{2} \\cdot ${h} = \\frac{${a+c}}{2} \\cdot ${h} = ${area.toFixed(2)} \\text{ cm}²</div>
+      </div>
+    `;
+  } else if (activeGeoType === 'analytic') {
+    const x1 = parseFloat(document.getElementById('geo-x1')?.value || '2');
+    const y1 = parseFloat(document.getElementById('geo-y1')?.value || '3');
+    const x2 = parseFloat(document.getElementById('geo-x2')?.value || '8');
+    const y2 = parseFloat(document.getElementById('geo-y2')?.value || '11');
+
+    const dist = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    const slope = x2 !== x1 ? (y2 - y1) / (x2 - x1) : 0;
+    const midX = (x1 + x2) / 2;
+    const midY = (y1 + y2) / 2;
+
+    // Coordinate grid axes
+    ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(40, h - 40); ctx.lineTo(w - 20, h - 40); // X Axis
+    ctx.moveTo(40, h - 40); ctx.lineTo(40, 20); // Y Axis
+    ctx.stroke();
+
+    const scale = 18;
+    const pA = { x: 40 + x1 * scale, y: (h - 40) - y1 * scale };
+    const pB = { x: 40 + x2 * scale, y: (h - 40) - y2 * scale };
+
+    // Line segment
+    ctx.strokeStyle = '#38bdf8';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(pA.x, pA.y);
+    ctx.lineTo(pB.x, pB.y);
+    ctx.stroke();
+
+    // Points
+    ctx.fillStyle = '#f59e0b';
+    ctx.beginPath(); ctx.arc(pA.x, pA.y, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(pB.x, pB.y, 6, 0, Math.PI * 2); ctx.fill();
+
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 13px Outfit';
+    ctx.fillText(`A(${x1}, ${y1})`, pA.x + 10, pA.y - 10);
+    ctx.fillText(`B(${x2}, ${y2})`, pB.x + 10, pB.y - 10);
+
+    summaryBox.innerHTML = `📍 Uzaklık = <strong>${dist.toFixed(2)} br</strong> &nbsp;|&nbsp; Eğim (m) = <strong>${slope.toFixed(2)}</strong> &nbsp;|&nbsp; Orta Nokta = <strong>(${midX}, ${midY})</strong>`;
+    resultsBox.innerHTML = `
+      <div class="step-card">
+        <div class="step-header"><span class="step-num">İki Nokta Arası Uzaklık</span><span class="step-rule">d = √((x₂-x₁)² + (y₂-y₁)²)</span></div>
+        <div class="step-math">d = \\sqrt{(${x2}-${x1})² + (${y2}-${y1})²} = \\sqrt{${Math.pow(x2-x1,2)} + ${Math.pow(y2-y1,2)}} = ${dist.toFixed(2)}</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header"><span class="step-num">Eğim (m)</span><span class="step-rule">m = (y₂ - y₁) / (x₂ - x₁)</span></div>
+        <div class="step-math">m = \\frac{${y2} - ${y1}}{${x2} - ${x1}} = ${slope.toFixed(2)}</div>
+      </div>
+    `;
   }
 }
 
