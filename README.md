@@ -4,6 +4,7 @@
 
 [![Author](https://img.shields.io/badge/Author-Tunahan_Haksever-8b5cf6?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tunahanhaksever)
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Try_Now_Free-00f0ff?style=for-the-badge&logo=googlechrome&logoColor=black)](https://tunahanhaksever.github.io/bitigey-matematik/)
+[![Tusi Lang](https://img.shields.io/badge/Language-Tusi_Lang_(.tusi)-e11d48?style=for-the-badge&logo=codeforces&logoColor=white)](https://tunahanhaksever.github.io/tusi-lang/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Web_/_Mobile_PWA-f59e0b?style=for-the-badge&logo=pwa&logoColor=white)](https://tunahanhaksever.github.io/bitigey-matematik/)
 [![KaTeX](https://img.shields.io/badge/Math_Engine-KaTeX_LaTeX-3b82f6?style=for-the-badge)](https://katex.org/)

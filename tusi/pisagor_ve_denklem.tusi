@@ -1,0 +1,49 @@
+// ==========================================================
+// Bitigey Matematik & Geometri Stüdyosu - Tusi Çözüm Motoru
+// Geliştirici: Tunahan Haksever
+// ==========================================================
+
+yazdır("∑ Bitigey Matematik Tusi Hesaplama Çekirdeği Başlatılıyor...")
+
+// 1. Pisagor Teoremi Fonksiyonu (c = √(a² + b²))
+fonksiyon pisagor_hesapla(dik_kenar_a, dik_kenar_b) {
+    değişken kareler_toplami = (dik_kenar_a * dik_kenar_a) + (dik_kenar_b * dik_kenar_b)
+    değişken hipotenus = mat_kok(kareler_toplami)
+    değişken alan = (dik_kenar_a * dik_kenar_b) / 2
+    
+    yazdır("📐 Dik Kenarlar: " + dik_kenar_a + " cm, " + dik_kenar_b + " cm")
+    yazdır("➔ Hipotenüs: " + hipotenus + " cm")
+    yazdır("➔ Üçgen Alanı: " + alan + " cm²")
+    
+    döndür [hipotenus, alan]
+}
+
+// 2. Kuadratik Denklem Çözücü (ax² + bx + c = 0)
+fonksiyon ikinci_derece_coz(a, b, c) {
+    yazdır("🧮 Denklem: " + a + "x² + (" + b + ")x + (" + c + ") = 0")
+    
+    değişken delta = (b * b) - (4 * a * c)
+    yazdır("➔ Diskriminant (Δ): " + delta)
+    
+    eğer (delta > 0) ise {
+        değişken kok_delta = mat_kok(delta)
+        değişken x1 = (-b + kok_delta) / (2 * a)
+        değişken x2 = (-b - kok_delta) / (2 * a)
+        yazdır("✓ İki Gerçek Kök Bulundu: x1 = " + x1 + ", x2 = " + x2)
+        döndür [x1, x2]
+    } değilse {
+        eğer (delta == 0) ise {
+            değişken x = -b / (2 * a)
+            yazdır("✓ Çakışık Tek Kök: x = " + x)
+            döndür [x]
+        } değilse {
+            yazdır("⚠ Gerçek Kök Yok (Karmaşık Kökler)")
+            döndür []
+        }
+    }
+}
+
+// Test Çalıştırmaları
+pisagor_hesapla(6, 8)
+ikinci_derece_coz(1, -5, 6)
+yazdır("Hesaplamalar Tamamlandı: " + zaman_simdi())
